@@ -1,0 +1,19 @@
+<section>
+  <h1 class="signup-heading">Sign Up</h1>
+  <form class="signup-form" [formGroup]="form" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Display Name</mat-label>
+      <input matInput formControlName="displayName" name="name" type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" name="email" type="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" placeholder="Min 6 chars" type="password">
+    </mat-form-field>
+    <button mat-flat-button [disabled]="form.invalid" color="primary" type="submit">Sign Up</button>
+    <p class="mat-caption have-account">Have already account? <a routerLink="/signin">Sign In</a></p>
+  </form>
+</section>

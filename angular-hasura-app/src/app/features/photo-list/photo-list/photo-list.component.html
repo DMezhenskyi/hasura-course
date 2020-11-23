@@ -1,0 +1,19 @@
+<h2 class="mat-heading-1">Photos</h2>
+
+<section *ngIf="photos$ | async as photos; else loading" class="list">
+  <mat-card *ngFor="let photo of photos">
+    <mat-card-header>
+      <mat-card-title>by: {{ photo.firebase_user_profile.displayName }}</mat-card-title>
+      <mat-card-subtitle>Published at: {{ photo.created_at | date: 'short' }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image (click)="onPhotoClick(photo.id)" [src]="photo.photo_url" class="image">
+    <mat-card-actions>
+      <span>Comments: ({{ photo.comments_aggregate.aggregate.count }})</span>
+      <button mat-button>New Comment</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
+
+<ng-template #loading>
+  <div class="loading">Loading photos...</div>
+</ng-template>

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Photo details</h1>
+
+<section mat-dialog-content class="dialog-content">
+  <ng-container *ngIf="photo$ | async as photo; else loading ">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-content>
+        <p>{{ photo.description }}</p>
+      </mat-card-content>
+      <img mat-card-image [src]="photo?.photo_url" [alt]="photo?.description" class="photo">
+    </mat-card>
+    <h4 class="mat-headline">Comments</h4>
+    <app-new-comment (added)="onSaveComment($event)"></app-new-comment>
+
+    <ng-container *ngIf="photo.comments.length > 0; else noComments">
+      <app-comment *ngFor="let comment of photo.comments" [comment]="comment"></app-comment>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #noComments>
+  <div>There are no comments yet...</div>
+</ng-template>
+
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>

@@ -1,0 +1,10 @@
+mutation InsertPhoto($photoUrl: String!, $description: String!) {
+  insert_photos(objects: { photo_url: $photoUrl, description: $description }) {
+    affected_rows
+    returning {
+      description
+      photo_url
+      created_at
+    }
+  }
+}

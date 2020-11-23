@@ -1,0 +1,9 @@
+<mat-card class="profile" *ngIf="this.profile$ | async as profile">
+  <div class="mat-body-1 profile-title">Profile</div>
+  <div class="mat-display-1 profile-name">{{ profile?.displayName }}</div>
+  <div class="mat-subheading-1">{{ profile?.email }}</div>
+</mat-card>
+
+<app-upload-file></app-upload-file>
+
+<app-photo-list></app-photo-list>

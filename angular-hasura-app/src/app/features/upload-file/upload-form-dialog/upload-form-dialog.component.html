@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add Photo</h1>
+<mat-dialog-content>
+  <img class="preview" [src]="data.photoUrl">
+
+  <mat-form-field appearance="outline" class="description">
+    <textarea matInput [(ngModel)]="description"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

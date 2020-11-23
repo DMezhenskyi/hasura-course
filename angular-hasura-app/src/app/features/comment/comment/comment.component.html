@@ -1,0 +1,5 @@
+<h3 class="mat-subheading-2 author">{{ comment?.firebase_user_profile?.displayName }}</h3>
+<p class="mat-body-1 comment-body">{{ comment?.comment }}</p>
+<section class="action-bar">
+  <div class="mat-caption comment-date">{{ comment?.created_at | date: 'short' }}</div>
+</section>

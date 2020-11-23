@@ -1,0 +1,56 @@
+type Mutation {
+  create_user (
+    credentials: SignupCredentials!
+  ): User
+}
+
+
+type Mutation {
+  login (
+    credentials: Credentials!
+  ): LoginObject
+}
+
+
+type Mutation {
+  upload_photo (
+    base64image: String!
+  ): UploadResult
+}
+
+
+type Query {
+  user_profile (
+    id: String!
+  ): User
+}
+
+
+
+
+input SignupCredentials {
+  email : String!
+  password : String!
+  displayName : String
+}
+
+input Credentials {
+  email : String!
+  password : String!
+}
+
+type User {
+  id : String!
+  email : String!
+  displayName : String
+}
+
+type LoginObject {
+  accessToken : String!
+  id : String!
+}
+
+type UploadResult {
+  url : String!
+}
+

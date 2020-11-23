@@ -1,0 +1,29 @@
+:host {
+  padding: 7px;
+  box-sizing: border-box;
+  display: block;
+  &:hover {
+    background-color: #fafafa;
+  }
+}
+.author {
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.comment-body {
+  margin-bottom: 0;
+}
+.comment-date {
+  opacity: 0.56;
+}
+.action-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  justify-content: space-between;
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

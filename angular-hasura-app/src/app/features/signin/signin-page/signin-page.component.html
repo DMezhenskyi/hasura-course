@@ -1,0 +1,14 @@
+<section>
+  <h1 class="signup-heading">Sign In</h1>
+  <form class="signup-form" [formGroup]="form" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" name="email" type="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <button mat-flat-button [disabled]="form.invalid" color="primary" type="submit">Sign In</button>
+  </form>
+</section>

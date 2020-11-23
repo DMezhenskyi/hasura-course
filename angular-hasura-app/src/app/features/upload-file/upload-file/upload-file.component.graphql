@@ -1,0 +1,5 @@
+mutation UploadPhoto($base64image: String!) {
+  upload_photo(base64image: $base64image) {
+    url
+  }
+}

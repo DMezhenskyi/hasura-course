@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  max-width: 1024px;
+  box-sizing: border-box;
+  margin: 30px auto 0;
+}
+.list {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.image {
+  height: 215px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+.loading {
+  text-align: center;
+  padding: 15px;
+}
+mat-card {
+  cursor: pointer;
+}

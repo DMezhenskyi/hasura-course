@@ -1,0 +1,50 @@
+actions:
+  - name: create_user
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:5001/hasura-course/us-central1/createUser
+    permissions:
+      - role: anonymous
+  - name: login
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:5001/hasura-course/us-central1/login
+    permissions:
+      - role: anonymous
+  - name: upload_photo
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:5001/hasura-course/us-central1/uploadPhoto
+    permissions:
+      - role: user
+  - name: user_profile
+    definition:
+      kind: ""
+      handler: http://host.docker.internal:5001/hasura-course/us-central1/getProfile
+    permissions:
+      - role: user
+custom_types:
+  enums: []
+  input_objects:
+    - name: SignupCredentials
+    - name: Credentials
+  objects:
+    - name: User
+      relationships:
+        - remote_table:
+            schema: public
+            name: photos
+          name: photos
+          type: array
+          field_mapping:
+            id: user_id
+        - remote_table:
+            schema: public
+            name: comments
+          name: comments
+          type: array
+          field_mapping:
+            id: user_id
+    - name: LoginObject
+    - name: UploadResult
+  scalars: []
