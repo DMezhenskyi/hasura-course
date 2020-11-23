@@ -29,7 +29,7 @@ Just clone this repository to you local machine
 - Install npm dependencies: `cd functions && npm install`
 - Go You need to login with your firebase tools. Just run `firebase login`.
 - Create a project. Run: `firebase projects:create --display-name hasura-course-project`. You will be asked to give some id to the project. HINT! Use some unique prefix.
-- Copy Project ID of created project and replace all strings "hasura-course" in whole files with your project id. (but exclude files: package-lock.json, README.MD). HINT! You can use global search/replace in your IDE or `CMD + Shift + f` if you use VS CODE. (Should be affected files docker-compose.yaml, actions.yaml, remote_schemas.yaml, tables.yaml)
+- Copy Project ID of created project and replace all strings "hasura-course" in whole files with your project id. (but exclude files: package-lock.json, README.MD). HINT! You can use global search/replace in your IDE or `CMD + Shift + f` if you use VS CODE. (Should be affected files docker-compose.yaml, actions.yaml, remote_schemas.yaml, tables.yaml). P.s it is temporary solution, very soon it will be solved with env variables.
 - Set up project alias: `firebase use --add` and pick created project and give some aliase.
 - Run command: `firebase open auth`. Click "Get started" and activate "Email/Password" provider.
 - On Firebase console go to "Storage" and click "Get Started" and follow instructions.
