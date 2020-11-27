@@ -1,20 +1,20 @@
 # Hasura video course project
 
-This is a project which we going to build during the video course about GraphQL engine Hasura
+This is a project which we going to build during these video courses about the GraphQL engine Hasura
 
 - See the Course [on Udemy](https://bit.ly/hasura-course)
 - See the Course [on SkillShare](https://skl.sh/3fahki2)
 
-## Instalation
+## Installation
 
-Installation of the project happens step by step during the course but if you want to install and run the project immediately you need to perform next steps:
+Installation of the project happens step by step during the course. However, if you want to install and run the project immediately you need to perform next steps:
 
 ### Clone it
 
 Just clone this repository to you local machine
 `git clone https://github.com/mezhik91/hasura-course-2020.git`
 
-### Install neccessary tools:
+### Install necessary tools:
 
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install [NodeJS](https://nodejs.org/en/download/)
@@ -32,13 +32,13 @@ Just clone this repository to you local machine
 - Copy Project ID of created project and replace all strings "hasura-course" in whole files with your project id. (but exclude files: package-lock.json, README.MD). HINT! You can use global search/replace in your IDE or `CMD + Shift + f` if you use VS CODE. (Should be affected files docker-compose.yaml, actions.yaml, remote_schemas.yaml, tables.yaml). P.s it is temporary solution, very soon it will be solved with env variables.
 - Set up project alias: `firebase use --add` and pick created project and give some aliase.
 - Run command: `firebase open auth`. Click "Get started" and activate "Email/Password" provider.
-- On Firebase console go to "Storage" and click "Get Started" and follow instructions.
-- In Code editor go to folder `functions` and clone and rename `config.example.json` to `config.json` and `serviceAccountKey.example.json` to `serviceAccountKey.json`;
-- Run `firebase open settings` copy WEB API KEY and paste in config.json instead "YOUR_API_KEY"
-- On this settings page go to "Service Accounts" tab and click "Generate new private key". Open generated file, copy its content and replace content of `serviceAccountKey.json` with what you just copied.
+- In Firebase console, go to "Storage" and click "Get Started" and follow instructions.
+- In Code editor, go to folder `functions` and clone and rename `config.example.json` to `config.json` and `serviceAccountKey.example.json` to `serviceAccountKey.json`;
+- Run `firebase open settings`. Copy WEB API KEY and paste it into config.json instead "YOUR_API_KEY"
+- On the settings page, go to "Service Accounts" tab and click "Generate new private key". Open generated file, copy its content and replace content of `serviceAccountKey.json` with what you just copied.
 - Go to the Storage page and copy your path to backet and in `config.json` replace value of "STORAGE_BACKET" with yours. HINT! It starts with: `gs://`. I explained where to find it in [this lecture on Udemy](https://www.udemy.com/course/develop-graphql-backend-faster-with-hasura/learn/lecture/23283364#overview) or [this lecture on SkillShare] (https://www.skillshare.com/classes/Performant-GraphQL-Backend-just-in-few-evenings-with-Hasura-2020/26542982/projects) time code - 4:04
 
-## Run progect
+## Run project
 
 ### Run Backend
 
