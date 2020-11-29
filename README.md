@@ -5,6 +5,10 @@ This is a project which we going to build during these video courses about the G
 - See the Course [on Udemy](https://bit.ly/hasura-course)
 - See the Course [on SkillShare](https://skl.sh/3fahki2)
 
+##### Please read it before cloning the code!
+
+Keep in mind please that you will clone the source code of the FINISHED project! **You do not need to clone it** in order to proceed with the course. Use it just as a source where you can look up the code in case some parts for whatever reason are not visible in video.
+
 ## Installation
 
 Installation of the project happens step by step during the course. However, if you want to install and run the project immediately you need to perform next steps:
