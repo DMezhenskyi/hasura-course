@@ -1,0 +1,7 @@
+query GetProfile($id: String!) {
+  user_profile(id: $id) {
+    id
+    email
+    displayName
+  }
+}

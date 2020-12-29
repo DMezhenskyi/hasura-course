@@ -1,0 +1,13 @@
+mutation SignUp($email: String!, $password: String!, $displayName: String!) {
+  create_user(
+    credentials: {
+      email: $email
+      password: $password
+      displayName: $displayName
+    }
+  ) {
+    displayName
+    email
+    id
+  }
+}

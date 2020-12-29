@@ -1,0 +1,27 @@
+query GetPhoto($photoId: uuid!) {
+  photos_by_pk(id: $photoId) {
+    id
+    description
+    created_at
+    photo_url
+    comments {
+      id
+      comment
+      created_at
+      firebase_user_profile {
+        displayName
+      }
+    }
+  }
+}
+
+mutation InsertComment($comment: String!, $photoId: uuid!) {
+  insert_comments_one(object: { comment: $comment, photo_id: $photoId }) {
+    id
+    comment
+    created_at
+    firebase_user_profile {
+      displayName
+    }
+  }
+}
