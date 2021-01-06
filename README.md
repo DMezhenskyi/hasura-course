@@ -41,6 +41,8 @@ Just clone this repository to you local machine
 - Run `firebase open settings`. Copy WEB API KEY and paste it into config.json instead "YOUR_API_KEY"
 - On the settings page, go to "Service Accounts" tab and click "Generate new private key". Open generated file, copy its content and replace content of `serviceAccountKey.json` with what you just copied.
 - Go to the Storage page and copy your path to backet and in `config.json` replace value of "STORAGE_BACKET" with yours. HINT! It starts with: `gs://`. I explained where to find it in [this lecture on Udemy](https://www.udemy.com/course/develop-graphql-backend-faster-with-hasura/learn/lecture/23283364#overview) or [this lecture on SkillShare] (https://www.skillshare.com/classes/Performant-GraphQL-Backend-just-in-few-evenings-with-Hasura-2020/26542982/projects) time code - 4:04
+- Adapt HASURA_GRAPHQL_JWT_SECRET variable in docker-compose.yml. This config should be replaced with your own.
+  In order to generate the JWT config go to [this page](https://hasura.io/jwt-config/), pick Firebase provider and enter your Firebase project ID. Then click "Generate config", copy a generated value and past as a value of HASURA_GRAPHQL_JWT_SECRET and be sure that it is wrapped in a single quotes.
 
 ## Run project
 
