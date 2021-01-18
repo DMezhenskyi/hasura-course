@@ -1,4 +1,4 @@
 - name: firebase_user_profile
   definition:
-    url: http://host.docker.internal:5001/hasura-course/us-central1/userProfile
+    url_from_env: REMOTE_SCHEME_URL
     timeout_seconds: 60

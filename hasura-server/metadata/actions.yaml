@@ -2,25 +2,25 @@ actions:
   - name: create_user
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:5001/hasura-course/us-central1/createUser
+      handler: '{{ACTION_BASE_URL}}/createUser'
     permissions:
       - role: anonymous
   - name: login
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:5001/hasura-course/us-central1/login
+      handler: '{{ACTION_BASE_URL}}/login'
     permissions:
       - role: anonymous
   - name: upload_photo
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:5001/hasura-course/us-central1/uploadPhoto
+      handler: '{{ACTION_BASE_URL}}/uploadPhoto'
     permissions:
       - role: user
   - name: user_profile
     definition:
       kind: ""
-      handler: http://host.docker.internal:5001/hasura-course/us-central1/getProfile
+      handler: '{{ACTION_BASE_URL}}/getProfile'
     permissions:
       - role: user
 custom_types:

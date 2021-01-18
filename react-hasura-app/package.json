@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-types": "graphql-codegen --config codegen.yml --watch"
+    "generate-types": "graphql-codegen -r dotenv/config --config codegen.yml --watch dotenv_config_path=../hasura-server/.env"
   },
   "eslintConfig": {
     "extends": [

@@ -75,7 +75,7 @@
         num_retries: 0
         interval_sec: 10
         timeout_sec: 60
-      webhook: http://host.docker.internal:5001/hasura-course/us-central1/notifyAboutComment
+      webhook_from_env: EMAIL_NOTIFY_URL
 - table:
     schema: public
     name: photos

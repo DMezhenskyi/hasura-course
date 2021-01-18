@@ -2,7 +2,7 @@ overwrite: true
 schema:
   - http://localhost:8080/v1/graphql:
       headers:
-        'x-hasura-admin-secret': '123'
+        'x-hasura-admin-secret': ${HASURA_GRAPHQL_ADMIN_SECRET:1234}
 documents: "src/**/*.graphql"
 generates:
   src/generated/graphql.tsx:
