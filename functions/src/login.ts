@@ -1,10 +1,10 @@
 import { Request, Response } from "firebase-functions";
 import fetch from "node-fetch";
+import * as functions from "firebase-functions";
 
-const { API_KEY } = require("../config.json");
-
-const AUTH_URL =
-  `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
+const AUTH_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${
+  functions.config()?.hasura.apikey
+}`;
 
 export const loginHandler = async (request: Request, response: Response) => {
   try {
@@ -16,14 +16,14 @@ export const loginHandler = async (request: Request, response: Response) => {
         password,
         returnSecureToken: true,
       }),
-    })
+    });
     const { idToken, localId } = await loginRequest.json();
 
     if (!idToken) throw Error("No idToken");
 
     response.status(200).send({
       accessToken: idToken,
-      id: localId
+      id: localId,
     });
   } catch (error) {
     response.status(500).send({ message: `Message: ${error.message}` });

@@ -3,19 +3,19 @@ import { notifyAboutCommentHandler } from "./notifyAboutComment";
 import { createUserHandler } from "./createUser";
 import { getProfileHandler } from "./getProfile";
 import initApolloServer from "./remoteScheme";
-import { loginHandler } from './login';
-import { authHookHandler } from './authHook';
-import { uploadPhotoHandler } from './uploadPhoto';
-import { initializeApp, credential } from "firebase-admin";
+import { loginHandler } from "./login";
+import { authHookHandler } from "./authHook";
+import { uploadPhotoHandler } from "./uploadPhoto";
+import * as admin from "firebase-admin";
 
-const serviceAccount = require("../serviceAccountKey.json");
-const { STORAGE_BACKET } = require("../config.json");
+const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG as string);
 
-initializeApp({
-  credential: credential.cert(serviceAccount),
-  storageBucket: STORAGE_BACKET
-});
+if (functions.config()?.hasura?.env === "local") {
+  const serviceAccount = require("../serviceAccountKey.json");
+  adminConfig.credential = admin.credential.cert(serviceAccount);
+}
 
+admin.initializeApp(adminConfig);
 
 export const notifyAboutComment = functions.https.onRequest(
   notifyAboutCommentHandler
