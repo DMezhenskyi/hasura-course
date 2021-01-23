@@ -12,6 +12,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "env-cmd": "^10.1.0",
     "formik": "^2.2.5",
     "graphql": "^15.4.0",
     "react": "^17.0.1",
@@ -23,11 +24,14 @@
     "yup": "^0.32.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f .env.local react-scripts start",
     "build": "react-scripts build",
+    "build:development": "env-cmd -f .env.development react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-types": "graphql-codegen -r dotenv/config --config codegen.yml --watch dotenv_config_path=../hasura-server/.env"
+    "generate-types": "graphql-codegen -r dotenv/config --config codegen.yml --watch dotenv_config_path=../hasura-server/.env",
+    "generate-types:ci": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": [
