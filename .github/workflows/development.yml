@@ -1,0 +1,34 @@
+name: Deploy Hasura Project on Dev environment
+on:
+  push:
+    branches:
+      - develop
+env:
+  PROJECT_ID: ${{ secrets.FIREBASE_DEV_PROJECT_ID }}
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_ENDPOINT_DEV }}
+  HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_CONSOLE_SECRET_DEV }}
+jobs:
+  deploy-cloud-functions:
+    name: Build Cloud Functions and Web Application
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Cloud Functions
+        working-directory: functions
+        run: |
+          npm install
+          npm run build
+      - name: Setup Cloud Functions Env Variables
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: functions:config:set hasura.apikey=${{ secrets.FIREBASE_WEB_API_KEY_DEV }}
+      - name: Deploy Cloud Functions
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: deploy --only functions
