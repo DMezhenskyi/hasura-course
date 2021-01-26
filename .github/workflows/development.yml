@@ -32,3 +32,16 @@ jobs:
         uses: w9jds/firebase-action@v2.0.0
         with:
           args: deploy --only functions
+  deploy-hasura:
+    name: Sync Hasura Metadata and Migrations
+    runs-on: ubuntu-20.04
+    needs: deploy-cloud-functions
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Hasura CLI
+        run: curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
+      - name: Update Metadata and Migrations
+        working-directory: hasura-server
+        run: |
+          hasura migrate apply
+          hasura metadata apply
