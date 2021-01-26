@@ -76,7 +76,7 @@ export const UploadPhoto = (props: Props) => {
 
 const SuccessSnackbar: FC<{ photoUrl: string }> = ({ photoUrl }) => (
   <Box display="flex" alignItems="center">
-    <img src={photoUrl} height={15} style={{ marginRight: 15 }} />
+    <img src={photoUrl} height={15} style={{ marginRight: 15 }} alt="" />
     <Typography variant="caption">Uploaded successfully!</Typography>
   </Box>
 );

@@ -29,7 +29,7 @@ export const PhotoDetailsDialog = ({
   onCancel,
   ...dialogProps
 }: Props) => {
-  const [getPhoto, { loading, data, refetch }] = useGetPhotoLazyQuery();
+  const [getPhoto, { loading, data }] = useGetPhotoLazyQuery();
   const [comment, setComment] = useState("");
   const [saveComment, { loading: commentSaving }] = useInsertCommentMutation();
   const isCommentsEmpty = () => {

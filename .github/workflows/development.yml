@@ -45,3 +45,20 @@ jobs:
         run: |
           hasura migrate apply
           hasura metadata apply
+  deploy-web-app:
+    name: Build & Deploy Web Application
+    runs-on: ubuntu-20.04
+    needs: deploy-hasura
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Application
+        working-directory: react-hasura-app
+        run: |
+          npm install
+          npm run generate-types:ci
+          npm run build:development
+      - name: Deploy Web App to Firebase Hosting
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          path: build
+          args: deploy --only hosting
