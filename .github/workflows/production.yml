@@ -1,0 +1,67 @@
+name: Deploy Hasura Project on Production environment
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+env:
+  PROJECT_ID: ${{ secrets.FIREBASE_PROD_PROJECT_ID }}
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_ENDPOINT_PROD }}
+  HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_CONSOLE_SECRET_PROD }}
+jobs:
+  deploy-cloud-functions:
+    name: Build Cloud Functions and Web Application
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Cloud Functions
+        working-directory: functions
+        run: |
+          npm install
+          npm run build
+      - name: Setup Cloud Functions Env Variables
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: functions:config:set hasura.apikey=${{ secrets.FIREBASE_WEB_API_KEY_PROD }}
+      - name: Deploy Cloud Functions
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: deploy --only functions
+  deploy-hasura:
+    name: Sync Hasura Metadata and Migrations
+    runs-on: ubuntu-20.04
+    needs: deploy-cloud-functions
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Hasura CLI
+        run: curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
+      - name: Update Metadata and Migrations
+        working-directory: hasura-server
+        run: |
+          hasura migrate apply
+          hasura metadata apply
+  deploy-web-app:
+    name: Build & Deploy Web Application
+    runs-on: ubuntu-20.04
+    needs: deploy-hasura
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Application
+        working-directory: react-hasura-app
+        run: |
+          npm install
+          npm run generate-types:ci
+          npm run build:development
+      - name: Deploy Web App to Firebase Hosting
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          path: build
+          args: deploy --only hosting
