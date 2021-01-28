@@ -1,6 +1,6 @@
 {
   "hasura": {
     "env": "local",
-    "apikey": "AIzaSyBItjuWrztkENq9YOQxFcg85vxb3FtD64U"
+    "apikey": "_YOUR_WEB_API_"
   }
 }

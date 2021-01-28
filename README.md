@@ -27,22 +27,20 @@ Just clone this repository to you local machine
 
 - Follow [this link](https://hasura.io/docs/1.0/graphql/core/hasura-cli/install-hasura-cli.html) to install it on your OS
 
-### Configure the Firebase project:
+### Configure the Firebase project to work locally:
 
 - Install Firebase Tools `npm install -g firebase-tools`
 - Install npm dependencies: `cd functions && npm install`
 - Go You need to login with your firebase tools. Just run `firebase login`.
-- Create a project. Run: `firebase projects:create --display-name hasura-course-project`. You will be asked to give some id to the project. HINT! Use some unique prefix.
-- Copy Project ID of created project and replace all strings "hasura-course" in whole files with your project id. (but exclude files: package-lock.json, README.MD). HINT! You can use global search/replace in your IDE or `CMD + Shift + f` if you use VS CODE. (Should be affected files docker-compose.yaml, actions.yaml, remote_schemas.yaml, tables.yaml). P.s it is temporary solution, very soon it will be solved with env variables.
+- Create a project. Run: `firebase projects:create --display-name 'Any name you like'`. You will be asked to give some id to the project. HINT! Use some unique prefix.
 - Set up project alias: `firebase use --add` and pick created project and give some aliase.
 - Run command: `firebase open auth`. Click "Get started" and activate "Email/Password" provider.
 - In Firebase console, go to "Storage" and click "Get Started" and follow instructions.
-- In Code editor, go to folder `functions` and clone and rename `config.example.json` to `config.json` and `serviceAccountKey.example.json` to `serviceAccountKey.json`;
-- Run `firebase open settings`. Copy WEB API KEY and paste it into config.json instead "YOUR_API_KEY"
-- On the settings page, go to "Service Accounts" tab and click "Generate new private key". Open generated file, copy its content and replace content of `serviceAccountKey.json` with what you just copied.
-- Go to the Storage page and copy your path to backet and in `config.json` replace value of "STORAGE_BACKET" with yours. HINT! It starts with: `gs://`. I explained where to find it in [this lecture on Udemy](https://www.udemy.com/course/develop-graphql-backend-faster-with-hasura/learn/lecture/23283364#overview) or [this lecture on SkillShare] (https://www.skillshare.com/classes/Performant-GraphQL-Backend-just-in-few-evenings-with-Hasura-2020/26542982/projects) time code - 4:04
-- Adapt HASURA_GRAPHQL_JWT_SECRET variable in docker-compose.yml. This config should be replaced with your own.
-  In order to generate the JWT config go to [this page](https://hasura.io/jwt-config/), pick Firebase provider and enter your Firebase project ID. Then click "Generate config", copy a generated value and past as a value of HASURA_GRAPHQL_JWT_SECRET and be sure that it is wrapped in a single quotes.
+- In Code editor, go to folder `functions` and clone and rename `.runtimeconfig.example.json` to `runtimeconfig.json` and `serviceAccountKey.example.json` to `serviceAccountKey.json`;
+- Run `firebase open settings`. Copy WEB API KEY and paste it into `.runtimeconfig.json` for key "apikey" instead "_YOUR_WEB_API_"
+- On the settings page (Firebase Console), go to "Service Accounts" tab and click "Generate new private key". Open generated file, copy its content and replace content of `serviceAccountKey.json` with what you just copied.
+- Go to hasura-server folder. There you have to create a file .env and copy/paste content from .env.example file.
+  After this you have to replace all `_your_firebase_project_id_` with your Firebase Project ID.
 
 ## Run project
 
@@ -56,7 +54,8 @@ Just clone this repository to you local machine
 
 ### Frontend
 
-- Open a new terminal tab and go to the folder wich application (Angular so far) `cd angular-hasura-app`
+- Open a new terminal tab and go to the folder wich application (Angular or React) `cd angular-hasura-app` or `cd react-hasura-app`
 - Run `npm install`
+- If you are going to run React App you have to create a `.env.local` file under react-hasura-app folder a copy content from `.env.local.example` into `.env.local`
 - Run `npm run start`
 - (Optional) if you plan to change .graphql files you should run `npm run generate-types` in separate terminal tab.
