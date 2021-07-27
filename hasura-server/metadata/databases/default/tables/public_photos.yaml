@@ -1,0 +1,77 @@
+array_relationships:
+- name: comments
+  using:
+    foreign_key_constraint_on:
+      column: photo_id
+      table:
+        name: comments
+        schema: public
+delete_permissions:
+- permission:
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - description
+    - photo_url
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+object_relationships:
+- name: city
+  using:
+    foreign_key_constraint_on: city_id
+remote_relationships:
+- definition:
+    hasura_fields:
+    - user_id
+    remote_field:
+      firebase_user_profile:
+        arguments:
+          id: $user_id
+    remote_schema: firebase_user_profile
+  name: firebase_user_profile
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - id
+    - photo_url
+    - description
+    - created_at
+    - updated_at
+    - user_id
+    filter: {}
+  role: anonymous
+- permission:
+    allow_aggregations: true
+    columns:
+    - created_at
+    - description
+    - id
+    - is_published
+    - photo_url
+    - updated_at
+    - user_id
+    filter: {}
+  role: user
+table:
+  name: photos
+  schema: public
+update_permissions:
+- permission:
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - description
+    - is_published
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user
