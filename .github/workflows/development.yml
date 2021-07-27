@@ -40,6 +40,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Hasura CLI
         run: curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
+      - name: Update Hasura CLI
+        run: sudo hasura update-cli --version v2.0.3
       - name: Update Metadata and Migrations
         working-directory: hasura-server
         run: |
