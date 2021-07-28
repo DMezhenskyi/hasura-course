@@ -10,6 +10,7 @@ env:
   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_ENDPOINT_PROD }}
   HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_CONSOLE_SECRET_PROD }}
+  HASURA_GRAPHQL_DATABASE_URL: ${{ secrets.HASURA_GRAPHQL_DATABASE_URL_DEV }}
 jobs:
   deploy-cloud-functions:
     name: Build Cloud Functions and Web Application
@@ -48,8 +49,8 @@ jobs:
       - name: Update Metadata and Migrations
         working-directory: hasura-server
         run: |
-          hasura migrate apply
-          hasura metadata apply
+          hasura migrate apply --database-name default
+          hasura metadata apply --database-name default
   deploy-web-app:
     name: Build & Deploy Web Application
     runs-on: ubuntu-20.04
