@@ -47,7 +47,7 @@ jobs:
         working-directory: hasura-server
         run: |
           hasura migrate apply --database-name default
-          hasura metadata apply --database-name default
+          hasura metadata apply
   deploy-web-app:
     name: Build & Deploy Web Application
     runs-on: ubuntu-20.04
