@@ -1,0 +1,62 @@
+delete_permissions:
+- permission:
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: notify_about_comment
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook_from_env: EMAIL_NOTIFY_URL
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - comment
+    - photo_id
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+remote_relationships:
+- definition:
+    hasura_fields:
+    - user_id
+    remote_field:
+      firebase_user_profile:
+        arguments:
+          id: $user_id
+    remote_schema: firebase_user_profile
+  name: firebase_user_profile
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - comment
+    - user_id
+    - created_at
+    - id
+    - photo_id
+    filter: {}
+  role: user
+table:
+  name: comments
+  schema: public
+update_permissions:
+- permission:
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - comment
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user

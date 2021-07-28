@@ -1,0 +1,16 @@
+select_permissions:
+- permission:
+    columns:
+    - id
+    - name
+    filter: {}
+  role: anonymous
+- permission:
+    columns:
+    - id
+    - name
+    filter: {}
+  role: user
+table:
+  name: cities
+  schema: public
