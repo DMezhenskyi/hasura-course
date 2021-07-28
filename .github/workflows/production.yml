@@ -10,7 +10,7 @@ env:
   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   HASURA_GRAPHQL_ENDPOINT: ${{ secrets.HASURA_ENDPOINT_PROD }}
   HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_CONSOLE_SECRET_PROD }}
-  HASURA_GRAPHQL_DATABASE_URL: ${{ secrets.HASURA_GRAPHQL_DATABASE_URL_DEV }}
+  HASURA_GRAPHQL_DATABASE_URL: ${{ secrets.HASURA_GRAPHQL_DATABASE_URL_PROD }}
 jobs:
   deploy-cloud-functions:
     name: Build Cloud Functions and Web Application
