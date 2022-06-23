@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Navigate, Route, RouteProps, useNavigate } from "react-router-dom";
+import { Navigate, RouteProps, useNavigate } from "react-router-dom";
 
 export interface AuthContext {
   signout: () => void;
