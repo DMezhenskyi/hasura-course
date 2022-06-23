@@ -7,7 +7,7 @@ import {
   GraphQLRequest,
   InMemoryCache,
 } from "@apollo/client";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SignUp } from "./components/signup/SignUp";
 import { Container } from "@material-ui/core";
 import { SignIn } from "./components/signin/SignIn";
@@ -48,17 +48,15 @@ function App() {
       <AuthProvider>
         <ApolloProvider client={client}>
           <Container maxWidth="md">
-            <Switch>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/signin">
-                <SignIn />
-              </Route>
-              <ProtectedRoute path="/profile/:id">
+            <Routes>
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/profile/:id" element={
+              <ProtectedRoute >
                 <UserProfile />
-              </ProtectedRoute>
-            </Switch>
+              </ProtectedRoute> 
+            } />
+            </Routes>
           </Container>
         </ApolloProvider>
       </AuthProvider>

@@ -2,7 +2,7 @@ import { MutationResult } from "@apollo/client";
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import { Formik } from "formik";
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import {
   SignInMutation,
@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 export const SignIn = (props: Props) => {
   const [signin, { loading }] = useSignInMutation();
   const context = useContext(authContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const signinHandler = (values: SignInMutationVariables) => {
     signin({ variables: values })
       .then(({ errors, data }) => {
@@ -43,7 +43,7 @@ export const SignIn = (props: Props) => {
     if (data?.login) {
       localStorage.setItem("user_token", data.login.accessToken);
       context?.setIsUserSignedIn(true);
-      history.push(`/profile/${data.login.id}`);
+      navigate(`/profile/${data.login.id}`);
     }
   };
   return (

@@ -17,7 +17,7 @@ export const PhotoList = (props: Props) => {
   const { id } = useParams<{ id: string }>();
   const [selectedPhotoId, setSelectedPhotoId] = useState("");
   const { data, loading } = useGetUserPhotosQuery({
-    variables: { userId: id },
+    variables: { userId: id || '' },
   });
   return (
     <div>
