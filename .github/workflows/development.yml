@@ -23,7 +23,7 @@ jobs:
       - name: Build Cloud Functions
         working-directory: functions
         run: |
-          npm install
+          npm install --force
           npm run build
       - name: Setup Cloud Functions Env Variables
         uses: w9jds/firebase-action@v2.0.0
@@ -57,7 +57,7 @@ jobs:
       - name: Build Application
         working-directory: react-hasura-app
         run: |
-          npm install
+          npm install --force
           npm run generate-types:ci
           npm run build:development
       - name: Deploy Web App to Firebase Hosting
