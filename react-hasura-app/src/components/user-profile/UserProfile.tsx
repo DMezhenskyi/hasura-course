@@ -9,7 +9,7 @@ interface Props {}
 
 export const UserProfile = (props: Props) => {
   const { id } = useParams<{ id: string }>();
-  const { data, loading, error } = useGetProfileQuery({ variables: { id } });
+  const { data, loading, error } = useGetProfileQuery({ variables: { id: id || '' } });
 
   if (error) {
     return (

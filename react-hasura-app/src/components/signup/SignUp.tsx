@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import { Formik } from "formik";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import {
   SignUpMutationVariables,
@@ -25,14 +25,14 @@ const validationSchema = Yup.object().shape({
 
 export const SignUp = (props: Props) => {
   const [signup, { loading }] = useSignUpMutation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const signupHandler = (values: SignUpMutationVariables) => {
     signup({ variables: values })
       .then(({ errors }) => {
         if (errors) {
           console.error(errors);
         } else {
-          history.push("/signin");
+          navigate("/signin");
         }
       })
       .catch(console.error);

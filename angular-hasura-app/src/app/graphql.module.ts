@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {APOLLO_OPTIONS} from 'apollo-angular';
+import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {ApolloClientOptions, ApolloLink, GraphQLRequest, InMemoryCache} from '@apollo/client/core';
 import {HttpLink} from 'apollo-angular/http';
 import { setContext } from '@apollo/link-context';
@@ -23,6 +23,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 }
 
 @NgModule({
+  imports: [ApolloModule],
   providers: [
     {
       provide: APOLLO_OPTIONS,

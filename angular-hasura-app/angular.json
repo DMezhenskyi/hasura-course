@@ -44,7 +44,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -61,6 +60,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -72,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-hasura-app:build:production"
+            },
+            "development": {
+              "browserTarget": "angular-hasura-app:build:development"
             }
           }
         },

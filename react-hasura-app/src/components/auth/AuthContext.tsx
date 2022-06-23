@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Redirect, Route, RouteProps, useHistory } from "react-router-dom";
+import { Navigate, RouteProps, useNavigate } from "react-router-dom";
 
 export interface AuthContext {
   signout: () => void;
@@ -21,11 +21,11 @@ export function AuthProvider({
   const [isUserSignedIn, setIsUserSignedIn] = useState<boolean>(
     !!localStorage.getItem("user_token")
   );
-  const history = useHistory();
+  const navigate = useNavigate();
   const signout = () => {
     localStorage.removeItem("user_token");
     setIsUserSignedIn(false);
-    history.push("/signin");
+    navigate("/signin");
   };
   return (
     <authContext.Provider
@@ -41,13 +41,12 @@ export function AuthProvider({
 }
 
 export function ProtectedRoute({
-  children,
-  ...props
+  children
 }: PropsWithChildren<RouteProps>): ReactElement {
   const context = useContext(authContext);
-  return (
-    <Route {...props}>
-      {context?.isUserSignedIn ? children : <Redirect to="/signin" />}
-    </Route>
-  );
+  if(!context?.isUserSignedIn) {
+    return <Navigate to="/signin" />;
+  }
+
+  return children as ReactElement
 }

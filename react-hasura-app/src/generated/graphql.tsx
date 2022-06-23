@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -11,45 +13,49 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  json: any;
   timestamptz: any;
   uuid: any;
 };
 
-/** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
-export type Boolean_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Boolean']>;
-  _gt?: Maybe<Scalars['Boolean']>;
-  _gte?: Maybe<Scalars['Boolean']>;
-  _in?: Maybe<Array<Scalars['Boolean']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Boolean']>;
-  _lte?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Scalars['Boolean']>;
-  _nin?: Maybe<Array<Scalars['Boolean']>>;
+export type Boolean_Cast_Exp = {
+  String?: InputMaybe<String_Comparison_Exp>;
 };
 
-export enum CacheControlScope {
-  Private = 'PRIVATE',
-  Public = 'PUBLIC'
-}
+/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
+export type Boolean_Comparison_Exp = {
+  _cast?: InputMaybe<Boolean_Cast_Exp>;
+  _eq?: InputMaybe<Scalars['Boolean']>;
+  _gt?: InputMaybe<Scalars['Boolean']>;
+  _gte?: InputMaybe<Scalars['Boolean']>;
+  _in?: InputMaybe<Array<Scalars['Boolean']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Boolean']>;
+  _lte?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Scalars['Boolean']>;
+  _nin?: InputMaybe<Array<Scalars['Boolean']>>;
+};
 
 export type Credentials = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-/** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
+export type Int_Cast_Exp = {
+  String?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Int']>;
-  _gt?: Maybe<Scalars['Int']>;
-  _gte?: Maybe<Scalars['Int']>;
-  _in?: Maybe<Array<Scalars['Int']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Int']>;
-  _lte?: Maybe<Scalars['Int']>;
-  _neq?: Maybe<Scalars['Int']>;
-  _nin?: Maybe<Array<Scalars['Int']>>;
+  _cast?: InputMaybe<Int_Cast_Exp>;
+  _eq?: InputMaybe<Scalars['Int']>;
+  _gt?: InputMaybe<Scalars['Int']>;
+  _gte?: InputMaybe<Scalars['Int']>;
+  _in?: InputMaybe<Array<Scalars['Int']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Int']>;
+  _lte?: InputMaybe<Scalars['Int']>;
+  _neq?: InputMaybe<Scalars['Int']>;
+  _nin?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type LoginObject = {
@@ -58,39 +64,43 @@ export type LoginObject = {
   id: Scalars['String'];
 };
 
-export type Query = {
-  __typename?: 'Query';
-  firebase_user_profile?: Maybe<UserProfile>;
-};
-
-
-export type QueryFirebase_User_ProfileArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
 export type SignupCredentials = {
-  displayName?: Maybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-/** expression to compare columns of type String. All fields are combined with logical 'AND'. */
+/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
-  _eq?: Maybe<Scalars['String']>;
-  _gt?: Maybe<Scalars['String']>;
-  _gte?: Maybe<Scalars['String']>;
-  _ilike?: Maybe<Scalars['String']>;
-  _in?: Maybe<Array<Scalars['String']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _like?: Maybe<Scalars['String']>;
-  _lt?: Maybe<Scalars['String']>;
-  _lte?: Maybe<Scalars['String']>;
-  _neq?: Maybe<Scalars['String']>;
-  _nilike?: Maybe<Scalars['String']>;
-  _nin?: Maybe<Array<Scalars['String']>>;
-  _nlike?: Maybe<Scalars['String']>;
-  _nsimilar?: Maybe<Scalars['String']>;
-  _similar?: Maybe<Scalars['String']>;
+  _eq?: InputMaybe<Scalars['String']>;
+  _gt?: InputMaybe<Scalars['String']>;
+  _gte?: InputMaybe<Scalars['String']>;
+  /** does the column match the given case-insensitive pattern */
+  _ilike?: InputMaybe<Scalars['String']>;
+  _in?: InputMaybe<Array<Scalars['String']>>;
+  /** does the column match the given POSIX regular expression, case insensitive */
+  _iregex?: InputMaybe<Scalars['String']>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  /** does the column match the given pattern */
+  _like?: InputMaybe<Scalars['String']>;
+  _lt?: InputMaybe<Scalars['String']>;
+  _lte?: InputMaybe<Scalars['String']>;
+  _neq?: InputMaybe<Scalars['String']>;
+  /** does the column NOT match the given case-insensitive pattern */
+  _nilike?: InputMaybe<Scalars['String']>;
+  _nin?: InputMaybe<Array<Scalars['String']>>;
+  /** does the column NOT match the given POSIX regular expression, case insensitive */
+  _niregex?: InputMaybe<Scalars['String']>;
+  /** does the column NOT match the given pattern */
+  _nlike?: InputMaybe<Scalars['String']>;
+  /** does the column NOT match the given POSIX regular expression, case sensitive */
+  _nregex?: InputMaybe<Scalars['String']>;
+  /** does the column NOT match the given SQL regular expression */
+  _nsimilar?: InputMaybe<Scalars['String']>;
+  /** does the column match the given POSIX regular expression, case sensitive */
+  _regex?: InputMaybe<Scalars['String']>;
+  /** does the column match the given SQL regular expression */
+  _similar?: InputMaybe<Scalars['String']>;
 };
 
 export type UploadResult = {
@@ -100,11 +110,53 @@ export type UploadResult = {
 
 export type User = {
   __typename?: 'User';
-  comments?: Maybe<Array<Maybe<Comments>>>;
+  /** fetch data from the table: "comments" */
+  comments: Array<Comments>;
+  /** fetch aggregated fields from the table: "comments" */
+  comments_aggregate: Comments_Aggregate;
   displayName?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   id: Scalars['String'];
-  photos?: Maybe<Array<Maybe<Photos>>>;
+  /** fetch data from the table: "photos" */
+  photos: Array<Photos>;
+  /** fetch aggregated fields from the table: "photos" */
+  photos_aggregate: Photos_Aggregate;
+};
+
+
+export type UserCommentsArgs = {
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
+};
+
+
+export type UserComments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
+};
+
+
+export type UserPhotosArgs = {
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
+};
+
+
+export type UserPhotos_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
 export type UserProfile = {
@@ -132,7 +184,7 @@ export type Cities_Aggregate = {
 export type Cities_Aggregate_Fields = {
   __typename?: 'cities_aggregate_fields';
   avg?: Maybe<Cities_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
+  count: Scalars['Int'];
   max?: Maybe<Cities_Max_Fields>;
   min?: Maybe<Cities_Min_Fields>;
   stddev?: Maybe<Cities_Stddev_Fields>;
@@ -147,29 +199,8 @@ export type Cities_Aggregate_Fields = {
 
 /** aggregate fields of "cities" */
 export type Cities_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Cities_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "cities" */
-export type Cities_Aggregate_Order_By = {
-  avg?: Maybe<Cities_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Cities_Max_Order_By>;
-  min?: Maybe<Cities_Min_Order_By>;
-  stddev?: Maybe<Cities_Stddev_Order_By>;
-  stddev_pop?: Maybe<Cities_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Cities_Stddev_Samp_Order_By>;
-  sum?: Maybe<Cities_Sum_Order_By>;
-  var_pop?: Maybe<Cities_Var_Pop_Order_By>;
-  var_samp?: Maybe<Cities_Var_Samp_Order_By>;
-  variance?: Maybe<Cities_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "cities" */
-export type Cities_Arr_Rel_Insert_Input = {
-  data: Array<Cities_Insert_Input>;
-  on_conflict?: Maybe<Cities_On_Conflict>;
+  columns?: InputMaybe<Array<Cities_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** aggregate avg on columns */
@@ -178,35 +209,30 @@ export type Cities_Avg_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-/** order by avg() on columns of table "cities" */
-export type Cities_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
 /** Boolean expression to filter rows from the table "cities". All fields are combined with a logical 'AND'. */
 export type Cities_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Cities_Bool_Exp>>>;
-  _not?: Maybe<Cities_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Cities_Bool_Exp>>>;
-  id?: Maybe<Int_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
+  _and?: InputMaybe<Array<Cities_Bool_Exp>>;
+  _not?: InputMaybe<Cities_Bool_Exp>;
+  _or?: InputMaybe<Array<Cities_Bool_Exp>>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "cities" */
 export enum Cities_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   CitiesPkey = 'cities_pkey'
 }
 
-/** input type for incrementing integer column in table "cities" */
+/** input type for incrementing numeric columns in table "cities" */
 export type Cities_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "cities" */
 export type Cities_Insert_Input = {
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -216,12 +242,6 @@ export type Cities_Max_Fields = {
   name?: Maybe<Scalars['String']>;
 };
 
-/** order by max() on columns of table "cities" */
-export type Cities_Max_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
 /** aggregate min on columns */
 export type Cities_Min_Fields = {
   __typename?: 'cities_min_fields';
@@ -229,41 +249,36 @@ export type Cities_Min_Fields = {
   name?: Maybe<Scalars['String']>;
 };
 
-/** order by min() on columns of table "cities" */
-export type Cities_Min_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
 /** response of any mutation on the table "cities" */
 export type Cities_Mutation_Response = {
   __typename?: 'cities_mutation_response';
-  /** number of affected rows by the mutation */
+  /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
+  /** data from the rows affected by the mutation */
   returning: Array<Cities>;
 };
 
 /** input type for inserting object relation for remote table "cities" */
 export type Cities_Obj_Rel_Insert_Input = {
   data: Cities_Insert_Input;
-  on_conflict?: Maybe<Cities_On_Conflict>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Cities_On_Conflict>;
 };
 
-/** on conflict condition type for table "cities" */
+/** on_conflict condition type for table "cities" */
 export type Cities_On_Conflict = {
   constraint: Cities_Constraint;
-  update_columns: Array<Cities_Update_Column>;
-  where?: Maybe<Cities_Bool_Exp>;
+  update_columns?: Array<Cities_Update_Column>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "cities" */
+/** Ordering options when selecting data from "cities". */
 export type Cities_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: "cities" */
+/** primary key columns input for table: cities */
 export type Cities_Pk_Columns_Input = {
   id: Scalars['Int'];
 };
@@ -278,8 +293,8 @@ export enum Cities_Select_Column {
 
 /** input type for updating data in table "cities" */
 export type Cities_Set_Input = {
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -288,20 +303,10 @@ export type Cities_Stddev_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev() on columns of table "cities" */
-export type Cities_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
 /** aggregate stddev_pop on columns */
 export type Cities_Stddev_Pop_Fields = {
   __typename?: 'cities_stddev_pop_fields';
   id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "cities" */
-export type Cities_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -310,20 +315,10 @@ export type Cities_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_samp() on columns of table "cities" */
-export type Cities_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
 /** aggregate sum on columns */
 export type Cities_Sum_Fields = {
   __typename?: 'cities_sum_fields';
   id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "cities" */
-export type Cities_Sum_Order_By = {
-  id?: Maybe<Order_By>;
 };
 
 /** update columns of table "cities" */
@@ -340,20 +335,10 @@ export type Cities_Var_Pop_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_pop() on columns of table "cities" */
-export type Cities_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
 /** aggregate var_samp on columns */
 export type Cities_Var_Samp_Fields = {
   __typename?: 'cities_var_samp_fields';
   id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "cities" */
-export type Cities_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -362,17 +347,11 @@ export type Cities_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-/** order by variance() on columns of table "cities" */
-export type Cities_Variance_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
 /** columns and relationships of "comments" */
 export type Comments = {
   __typename?: 'comments';
   comment: Scalars['String'];
   created_at: Scalars['timestamptz'];
-  /** Remote relationship field */
   firebase_user_profile?: Maybe<UserProfile>;
   id: Scalars['uuid'];
   is_published?: Maybe<Scalars['Boolean']>;
@@ -391,7 +370,7 @@ export type Comments_Aggregate = {
 /** aggregate fields of "comments" */
 export type Comments_Aggregate_Fields = {
   __typename?: 'comments_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
+  count: Scalars['Int'];
   max?: Maybe<Comments_Max_Fields>;
   min?: Maybe<Comments_Min_Fields>;
 };
@@ -399,52 +378,53 @@ export type Comments_Aggregate_Fields = {
 
 /** aggregate fields of "comments" */
 export type Comments_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Comments_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
+  columns?: InputMaybe<Array<Comments_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "comments" */
 export type Comments_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Comments_Max_Order_By>;
-  min?: Maybe<Comments_Min_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Comments_Max_Order_By>;
+  min?: InputMaybe<Comments_Min_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "comments" */
 export type Comments_Arr_Rel_Insert_Input = {
   data: Array<Comments_Insert_Input>;
-  on_conflict?: Maybe<Comments_On_Conflict>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Comments_On_Conflict>;
 };
 
 /** Boolean expression to filter rows from the table "comments". All fields are combined with a logical 'AND'. */
 export type Comments_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Comments_Bool_Exp>>>;
-  _not?: Maybe<Comments_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Comments_Bool_Exp>>>;
-  comment?: Maybe<String_Comparison_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  is_published?: Maybe<Boolean_Comparison_Exp>;
-  photo_id?: Maybe<Uuid_Comparison_Exp>;
-  reviewed_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
+  _and?: InputMaybe<Array<Comments_Bool_Exp>>;
+  _not?: InputMaybe<Comments_Bool_Exp>;
+  _or?: InputMaybe<Array<Comments_Bool_Exp>>;
+  comment?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  is_published?: InputMaybe<Boolean_Comparison_Exp>;
+  photo_id?: InputMaybe<Uuid_Comparison_Exp>;
+  reviewed_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user_id?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "comments" */
 export enum Comments_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   CommentsPkey = 'comments_pkey'
 }
 
 /** input type for inserting data into table "comments" */
 export type Comments_Insert_Input = {
-  comment?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  photo_id?: Maybe<Scalars['uuid']>;
-  reviewed_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  is_published?: InputMaybe<Scalars['Boolean']>;
+  photo_id?: InputMaybe<Scalars['uuid']>;
+  reviewed_at?: InputMaybe<Scalars['timestamptz']>;
+  user_id?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -460,12 +440,12 @@ export type Comments_Max_Fields = {
 
 /** order by max() on columns of table "comments" */
 export type Comments_Max_Order_By = {
-  comment?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  photo_id?: Maybe<Order_By>;
-  reviewed_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+  comment?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  photo_id?: InputMaybe<Order_By>;
+  reviewed_at?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -481,48 +461,42 @@ export type Comments_Min_Fields = {
 
 /** order by min() on columns of table "comments" */
 export type Comments_Min_Order_By = {
-  comment?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  photo_id?: Maybe<Order_By>;
-  reviewed_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+  comment?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  photo_id?: InputMaybe<Order_By>;
+  reviewed_at?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "comments" */
 export type Comments_Mutation_Response = {
   __typename?: 'comments_mutation_response';
-  /** number of affected rows by the mutation */
+  /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
+  /** data from the rows affected by the mutation */
   returning: Array<Comments>;
 };
 
-/** input type for inserting object relation for remote table "comments" */
-export type Comments_Obj_Rel_Insert_Input = {
-  data: Comments_Insert_Input;
-  on_conflict?: Maybe<Comments_On_Conflict>;
-};
-
-/** on conflict condition type for table "comments" */
+/** on_conflict condition type for table "comments" */
 export type Comments_On_Conflict = {
   constraint: Comments_Constraint;
-  update_columns: Array<Comments_Update_Column>;
-  where?: Maybe<Comments_Bool_Exp>;
+  update_columns?: Array<Comments_Update_Column>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "comments" */
+/** Ordering options when selecting data from "comments". */
 export type Comments_Order_By = {
-  comment?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  is_published?: Maybe<Order_By>;
-  photo_id?: Maybe<Order_By>;
-  reviewed_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+  comment?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  is_published?: InputMaybe<Order_By>;
+  photo_id?: InputMaybe<Order_By>;
+  reviewed_at?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: "comments" */
+/** primary key columns input for table: comments */
 export type Comments_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
@@ -547,13 +521,13 @@ export enum Comments_Select_Column {
 
 /** input type for updating data in table "comments" */
 export type Comments_Set_Input = {
-  comment?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  photo_id?: Maybe<Scalars['uuid']>;
-  reviewed_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  is_published?: InputMaybe<Scalars['Boolean']>;
+  photo_id?: InputMaybe<Scalars['uuid']>;
+  reviewed_at?: InputMaybe<Scalars['timestamptz']>;
+  user_id?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "comments" */
@@ -574,24 +548,9 @@ export enum Comments_Update_Column {
   UserId = 'user_id'
 }
 
-
-/** expression to compare columns of type json. All fields are combined with logical 'AND'. */
-export type Json_Comparison_Exp = {
-  _eq?: Maybe<Scalars['json']>;
-  _gt?: Maybe<Scalars['json']>;
-  _gte?: Maybe<Scalars['json']>;
-  _in?: Maybe<Array<Scalars['json']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['json']>;
-  _lte?: Maybe<Scalars['json']>;
-  _neq?: Maybe<Scalars['json']>;
-  _nin?: Maybe<Array<Scalars['json']>>;
-};
-
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  /** perform the action: "create_user" */
   create_user?: Maybe<User>;
   /** delete data from the table: "cities" */
   delete_cities?: Maybe<Cities_Mutation_Response>;
@@ -617,7 +576,6 @@ export type Mutation_Root = {
   insert_photos?: Maybe<Photos_Mutation_Response>;
   /** insert a single row into the table: "photos" */
   insert_photos_one?: Maybe<Photos>;
-  /** perform the action: "login" */
   login?: Maybe<LoginObject>;
   /** update data of the table: "cities" */
   update_cities?: Maybe<Cities_Mutation_Response>;
@@ -631,7 +589,6 @@ export type Mutation_Root = {
   update_photos?: Maybe<Photos_Mutation_Response>;
   /** update single row of the table: "photos" */
   update_photos_by_pk?: Maybe<Photos>;
-  /** perform the action: "upload_photo" */
   upload_photo?: Maybe<UploadResult>;
 };
 
@@ -681,42 +638,42 @@ export type Mutation_RootDelete_Photos_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootInsert_CitiesArgs = {
   objects: Array<Cities_Insert_Input>;
-  on_conflict?: Maybe<Cities_On_Conflict>;
+  on_conflict?: InputMaybe<Cities_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_Cities_OneArgs = {
   object: Cities_Insert_Input;
-  on_conflict?: Maybe<Cities_On_Conflict>;
+  on_conflict?: InputMaybe<Cities_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_CommentsArgs = {
   objects: Array<Comments_Insert_Input>;
-  on_conflict?: Maybe<Comments_On_Conflict>;
+  on_conflict?: InputMaybe<Comments_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_Comments_OneArgs = {
   object: Comments_Insert_Input;
-  on_conflict?: Maybe<Comments_On_Conflict>;
+  on_conflict?: InputMaybe<Comments_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_PhotosArgs = {
   objects: Array<Photos_Insert_Input>;
-  on_conflict?: Maybe<Photos_On_Conflict>;
+  on_conflict?: InputMaybe<Photos_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_Photos_OneArgs = {
   object: Photos_Insert_Input;
-  on_conflict?: Maybe<Photos_On_Conflict>;
+  on_conflict?: InputMaybe<Photos_On_Conflict>;
 };
 
 
@@ -728,46 +685,46 @@ export type Mutation_RootLoginArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_CitiesArgs = {
-  _inc?: Maybe<Cities_Inc_Input>;
-  _set?: Maybe<Cities_Set_Input>;
+  _inc?: InputMaybe<Cities_Inc_Input>;
+  _set?: InputMaybe<Cities_Set_Input>;
   where: Cities_Bool_Exp;
 };
 
 
 /** mutation root */
 export type Mutation_RootUpdate_Cities_By_PkArgs = {
-  _inc?: Maybe<Cities_Inc_Input>;
-  _set?: Maybe<Cities_Set_Input>;
+  _inc?: InputMaybe<Cities_Inc_Input>;
+  _set?: InputMaybe<Cities_Set_Input>;
   pk_columns: Cities_Pk_Columns_Input;
 };
 
 
 /** mutation root */
 export type Mutation_RootUpdate_CommentsArgs = {
-  _set?: Maybe<Comments_Set_Input>;
+  _set?: InputMaybe<Comments_Set_Input>;
   where: Comments_Bool_Exp;
 };
 
 
 /** mutation root */
 export type Mutation_RootUpdate_Comments_By_PkArgs = {
-  _set?: Maybe<Comments_Set_Input>;
+  _set?: InputMaybe<Comments_Set_Input>;
   pk_columns: Comments_Pk_Columns_Input;
 };
 
 
 /** mutation root */
 export type Mutation_RootUpdate_PhotosArgs = {
-  _inc?: Maybe<Photos_Inc_Input>;
-  _set?: Maybe<Photos_Set_Input>;
+  _inc?: InputMaybe<Photos_Inc_Input>;
+  _set?: InputMaybe<Photos_Set_Input>;
   where: Photos_Bool_Exp;
 };
 
 
 /** mutation root */
 export type Mutation_RootUpdate_Photos_By_PkArgs = {
-  _inc?: Maybe<Photos_Inc_Input>;
-  _set?: Maybe<Photos_Set_Input>;
+  _inc?: InputMaybe<Photos_Inc_Input>;
+  _set?: InputMaybe<Photos_Set_Input>;
   pk_columns: Photos_Pk_Columns_Input;
 };
 
@@ -779,38 +736,33 @@ export type Mutation_RootUpload_PhotoArgs = {
 
 /** column ordering options */
 export enum Order_By {
-  /** in the ascending order, nulls last */
+  /** in ascending order, nulls last */
   Asc = 'asc',
-  /** in the ascending order, nulls first */
+  /** in ascending order, nulls first */
   AscNullsFirst = 'asc_nulls_first',
-  /** in the ascending order, nulls last */
+  /** in ascending order, nulls last */
   AscNullsLast = 'asc_nulls_last',
-  /** in the descending order, nulls first */
+  /** in descending order, nulls first */
   Desc = 'desc',
-  /** in the descending order, nulls first */
+  /** in descending order, nulls first */
   DescNullsFirst = 'desc_nulls_first',
-  /** in the descending order, nulls last */
+  /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
 }
 
-/**
- * This is all photos uploaded by users
- * 
- * 
- * columns and relationships of "photos"
- */
+/** This is all photos uploaded by users */
 export type Photos = {
   __typename?: 'photos';
   /** An object relationship */
   city?: Maybe<Cities>;
   city_id?: Maybe<Scalars['Int']>;
-  /** An array relationship */
+  /** fetch data from the table: "comments" */
   comments: Array<Comments>;
-  /** An aggregated array relationship */
+  /** fetch aggregated fields from the table: "comments" */
   comments_aggregate: Comments_Aggregate;
   created_at: Scalars['timestamptz'];
+  deleted_at?: Maybe<Scalars['timestamptz']>;
   description: Scalars['String'];
-  /** Remote relationship field */
   firebase_user_profile?: Maybe<UserProfile>;
   id: Scalars['uuid'];
   is_published: Scalars['Boolean'];
@@ -820,33 +772,23 @@ export type Photos = {
 };
 
 
-/**
- * This is all photos uploaded by users
- * 
- * 
- * columns and relationships of "photos"
- */
+/** This is all photos uploaded by users */
 export type PhotosCommentsArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 
-/**
- * This is all photos uploaded by users
- * 
- * 
- * columns and relationships of "photos"
- */
+/** This is all photos uploaded by users */
 export type PhotosComments_AggregateArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 /** aggregated selection of "photos" */
@@ -860,7 +802,7 @@ export type Photos_Aggregate = {
 export type Photos_Aggregate_Fields = {
   __typename?: 'photos_aggregate_fields';
   avg?: Maybe<Photos_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
+  count: Scalars['Int'];
   max?: Maybe<Photos_Max_Fields>;
   min?: Maybe<Photos_Min_Fields>;
   stddev?: Maybe<Photos_Stddev_Fields>;
@@ -875,29 +817,8 @@ export type Photos_Aggregate_Fields = {
 
 /** aggregate fields of "photos" */
 export type Photos_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Photos_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "photos" */
-export type Photos_Aggregate_Order_By = {
-  avg?: Maybe<Photos_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Photos_Max_Order_By>;
-  min?: Maybe<Photos_Min_Order_By>;
-  stddev?: Maybe<Photos_Stddev_Order_By>;
-  stddev_pop?: Maybe<Photos_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Photos_Stddev_Samp_Order_By>;
-  sum?: Maybe<Photos_Sum_Order_By>;
-  var_pop?: Maybe<Photos_Var_Pop_Order_By>;
-  var_samp?: Maybe<Photos_Var_Samp_Order_By>;
-  variance?: Maybe<Photos_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "photos" */
-export type Photos_Arr_Rel_Insert_Input = {
-  data: Array<Photos_Insert_Input>;
-  on_conflict?: Maybe<Photos_On_Conflict>;
+  columns?: InputMaybe<Array<Photos_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** aggregate avg on columns */
@@ -906,51 +827,48 @@ export type Photos_Avg_Fields = {
   city_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by avg() on columns of table "photos" */
-export type Photos_Avg_Order_By = {
-  city_id?: Maybe<Order_By>;
-};
-
 /** Boolean expression to filter rows from the table "photos". All fields are combined with a logical 'AND'. */
 export type Photos_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Photos_Bool_Exp>>>;
-  _not?: Maybe<Photos_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Photos_Bool_Exp>>>;
-  city?: Maybe<Cities_Bool_Exp>;
-  city_id?: Maybe<Int_Comparison_Exp>;
-  comments?: Maybe<Comments_Bool_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  description?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  is_published?: Maybe<Boolean_Comparison_Exp>;
-  photo_url?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
+  _and?: InputMaybe<Array<Photos_Bool_Exp>>;
+  _not?: InputMaybe<Photos_Bool_Exp>;
+  _or?: InputMaybe<Array<Photos_Bool_Exp>>;
+  city?: InputMaybe<Cities_Bool_Exp>;
+  city_id?: InputMaybe<Int_Comparison_Exp>;
+  comments?: InputMaybe<Comments_Bool_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  is_published?: InputMaybe<Boolean_Comparison_Exp>;
+  photo_url?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user_id?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "photos" */
 export enum Photos_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   PhotosPkey = 'photos_pkey'
 }
 
-/** input type for incrementing integer column in table "photos" */
+/** input type for incrementing numeric columns in table "photos" */
 export type Photos_Inc_Input = {
-  city_id?: Maybe<Scalars['Int']>;
+  city_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "photos" */
 export type Photos_Insert_Input = {
-  city?: Maybe<Cities_Obj_Rel_Insert_Input>;
-  city_id?: Maybe<Scalars['Int']>;
-  comments?: Maybe<Comments_Arr_Rel_Insert_Input>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  photo_url?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
+  city?: InputMaybe<Cities_Obj_Rel_Insert_Input>;
+  city_id?: InputMaybe<Scalars['Int']>;
+  comments?: InputMaybe<Comments_Arr_Rel_Insert_Input>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  is_published?: InputMaybe<Scalars['Boolean']>;
+  photo_url?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  user_id?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -958,22 +876,12 @@ export type Photos_Max_Fields = {
   __typename?: 'photos_max_fields';
   city_id?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  deleted_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   photo_url?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "photos" */
-export type Photos_Max_Order_By = {
-  city_id?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  photo_url?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -981,6 +889,7 @@ export type Photos_Min_Fields = {
   __typename?: 'photos_min_fields';
   city_id?: Maybe<Scalars['Int']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  deleted_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   photo_url?: Maybe<Scalars['String']>;
@@ -988,54 +897,38 @@ export type Photos_Min_Fields = {
   user_id?: Maybe<Scalars['String']>;
 };
 
-/** order by min() on columns of table "photos" */
-export type Photos_Min_Order_By = {
-  city_id?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  photo_url?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
 /** response of any mutation on the table "photos" */
 export type Photos_Mutation_Response = {
   __typename?: 'photos_mutation_response';
-  /** number of affected rows by the mutation */
+  /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
+  /** data from the rows affected by the mutation */
   returning: Array<Photos>;
 };
 
-/** input type for inserting object relation for remote table "photos" */
-export type Photos_Obj_Rel_Insert_Input = {
-  data: Photos_Insert_Input;
-  on_conflict?: Maybe<Photos_On_Conflict>;
-};
-
-/** on conflict condition type for table "photos" */
+/** on_conflict condition type for table "photos" */
 export type Photos_On_Conflict = {
   constraint: Photos_Constraint;
-  update_columns: Array<Photos_Update_Column>;
-  where?: Maybe<Photos_Bool_Exp>;
+  update_columns?: Array<Photos_Update_Column>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "photos" */
+/** Ordering options when selecting data from "photos". */
 export type Photos_Order_By = {
-  city?: Maybe<Cities_Order_By>;
-  city_id?: Maybe<Order_By>;
-  comments_aggregate?: Maybe<Comments_Aggregate_Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  is_published?: Maybe<Order_By>;
-  photo_url?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+  city?: InputMaybe<Cities_Order_By>;
+  city_id?: InputMaybe<Order_By>;
+  comments_aggregate?: InputMaybe<Comments_Aggregate_Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  deleted_at?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  is_published?: InputMaybe<Order_By>;
+  photo_url?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: "photos" */
+/** primary key columns input for table: photos */
 export type Photos_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
@@ -1046,6 +939,8 @@ export enum Photos_Select_Column {
   CityId = 'city_id',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeletedAt = 'deleted_at',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1062,14 +957,15 @@ export enum Photos_Select_Column {
 
 /** input type for updating data in table "photos" */
 export type Photos_Set_Input = {
-  city_id?: Maybe<Scalars['Int']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  photo_url?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
+  city_id?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  is_published?: InputMaybe<Scalars['Boolean']>;
+  photo_url?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  user_id?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -1078,20 +974,10 @@ export type Photos_Stddev_Fields = {
   city_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev() on columns of table "photos" */
-export type Photos_Stddev_Order_By = {
-  city_id?: Maybe<Order_By>;
-};
-
 /** aggregate stddev_pop on columns */
 export type Photos_Stddev_Pop_Fields = {
   __typename?: 'photos_stddev_pop_fields';
   city_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "photos" */
-export type Photos_Stddev_Pop_Order_By = {
-  city_id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1100,20 +986,10 @@ export type Photos_Stddev_Samp_Fields = {
   city_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_samp() on columns of table "photos" */
-export type Photos_Stddev_Samp_Order_By = {
-  city_id?: Maybe<Order_By>;
-};
-
 /** aggregate sum on columns */
 export type Photos_Sum_Fields = {
   __typename?: 'photos_sum_fields';
   city_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "photos" */
-export type Photos_Sum_Order_By = {
-  city_id?: Maybe<Order_By>;
 };
 
 /** update columns of table "photos" */
@@ -1122,6 +998,8 @@ export enum Photos_Update_Column {
   CityId = 'city_id',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeletedAt = 'deleted_at',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1142,20 +1020,10 @@ export type Photos_Var_Pop_Fields = {
   city_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_pop() on columns of table "photos" */
-export type Photos_Var_Pop_Order_By = {
-  city_id?: Maybe<Order_By>;
-};
-
 /** aggregate var_samp on columns */
 export type Photos_Var_Samp_Fields = {
   __typename?: 'photos_var_samp_fields';
   city_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "photos" */
-export type Photos_Var_Samp_Order_By = {
-  city_id?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -1164,12 +1032,6 @@ export type Photos_Variance_Fields = {
   city_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by variance() on columns of table "photos" */
-export type Photos_Variance_Order_By = {
-  city_id?: Maybe<Order_By>;
-};
-
-/** query root */
 export type Query_Root = {
   __typename?: 'query_root';
   /** fetch data from the table: "cities" */
@@ -1191,101 +1053,88 @@ export type Query_Root = {
   photos_aggregate: Photos_Aggregate;
   /** fetch data from the table: "photos" using primary key columns */
   photos_by_pk?: Maybe<Photos>;
-  /** perform the action: "user_profile" */
   user_profile?: Maybe<User>;
 };
 
 
-/** query root */
 export type Query_RootCitiesArgs = {
-  distinct_on?: Maybe<Array<Cities_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Cities_Order_By>>;
-  where?: Maybe<Cities_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Cities_Order_By>>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootCities_AggregateArgs = {
-  distinct_on?: Maybe<Array<Cities_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Cities_Order_By>>;
-  where?: Maybe<Cities_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Cities_Order_By>>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootCities_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
-/** query root */
 export type Query_RootCommentsArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootComments_AggregateArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootComments_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
-/** query root */
 export type Query_RootFirebase_User_ProfileArgs = {
-  id?: Maybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
 };
 
 
-/** query root */
 export type Query_RootPhotosArgs = {
-  distinct_on?: Maybe<Array<Photos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Photos_Order_By>>;
-  where?: Maybe<Photos_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootPhotos_AggregateArgs = {
-  distinct_on?: Maybe<Array<Photos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Photos_Order_By>>;
-  where?: Maybe<Photos_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
 
-/** query root */
 export type Query_RootPhotos_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
-/** query root */
 export type Query_RootUser_ProfileArgs = {
   id: Scalars['String'];
 };
 
-/** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
   /** fetch data from the table: "cities" */
@@ -1306,120 +1155,111 @@ export type Subscription_Root = {
   photos_aggregate: Photos_Aggregate;
   /** fetch data from the table: "photos" using primary key columns */
   photos_by_pk?: Maybe<Photos>;
-  /** perform the action: "user_profile" */
-  user_profile?: Maybe<User>;
 };
 
 
-/** subscription root */
 export type Subscription_RootCitiesArgs = {
-  distinct_on?: Maybe<Array<Cities_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Cities_Order_By>>;
-  where?: Maybe<Cities_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Cities_Order_By>>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootCities_AggregateArgs = {
-  distinct_on?: Maybe<Array<Cities_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Cities_Order_By>>;
-  where?: Maybe<Cities_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Cities_Order_By>>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootCities_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
-/** subscription root */
 export type Subscription_RootCommentsArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootComments_AggregateArgs = {
-  distinct_on?: Maybe<Array<Comments_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Comments_Order_By>>;
-  where?: Maybe<Comments_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Comments_Order_By>>;
+  where?: InputMaybe<Comments_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootComments_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
-/** subscription root */
 export type Subscription_RootPhotosArgs = {
-  distinct_on?: Maybe<Array<Photos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Photos_Order_By>>;
-  where?: Maybe<Photos_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootPhotos_AggregateArgs = {
-  distinct_on?: Maybe<Array<Photos_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Photos_Order_By>>;
-  where?: Maybe<Photos_Bool_Exp>;
+  distinct_on?: InputMaybe<Array<Photos_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Photos_Order_By>>;
+  where?: InputMaybe<Photos_Bool_Exp>;
 };
 
 
-/** subscription root */
 export type Subscription_RootPhotos_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
-
-/** subscription root */
-export type Subscription_RootUser_ProfileArgs = {
-  id: Scalars['String'];
+export type Timestamptz_Cast_Exp = {
+  String?: InputMaybe<String_Comparison_Exp>;
 };
 
-
-/** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamptz']>;
-  _gt?: Maybe<Scalars['timestamptz']>;
-  _gte?: Maybe<Scalars['timestamptz']>;
-  _in?: Maybe<Array<Scalars['timestamptz']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['timestamptz']>;
-  _lte?: Maybe<Scalars['timestamptz']>;
-  _neq?: Maybe<Scalars['timestamptz']>;
-  _nin?: Maybe<Array<Scalars['timestamptz']>>;
+  _cast?: InputMaybe<Timestamptz_Cast_Exp>;
+  _eq?: InputMaybe<Scalars['timestamptz']>;
+  _gt?: InputMaybe<Scalars['timestamptz']>;
+  _gte?: InputMaybe<Scalars['timestamptz']>;
+  _in?: InputMaybe<Array<Scalars['timestamptz']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['timestamptz']>;
+  _lte?: InputMaybe<Scalars['timestamptz']>;
+  _neq?: InputMaybe<Scalars['timestamptz']>;
+  _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
 };
 
+export type Uuid_Cast_Exp = {
+  String?: InputMaybe<String_Comparison_Exp>;
+};
 
-/** expression to compare columns of type uuid. All fields are combined with logical 'AND'. */
+/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
-  _eq?: Maybe<Scalars['uuid']>;
-  _gt?: Maybe<Scalars['uuid']>;
-  _gte?: Maybe<Scalars['uuid']>;
-  _in?: Maybe<Array<Scalars['uuid']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['uuid']>;
-  _lte?: Maybe<Scalars['uuid']>;
-  _neq?: Maybe<Scalars['uuid']>;
-  _nin?: Maybe<Array<Scalars['uuid']>>;
+  _cast?: InputMaybe<Uuid_Cast_Exp>;
+  _eq?: InputMaybe<Scalars['uuid']>;
+  _gt?: InputMaybe<Scalars['uuid']>;
+  _gte?: InputMaybe<Scalars['uuid']>;
+  _in?: InputMaybe<Array<Scalars['uuid']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['uuid']>;
+  _lte?: InputMaybe<Scalars['uuid']>;
+  _neq?: InputMaybe<Scalars['uuid']>;
+  _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
 export type GetPhotoQueryVariables = Exact<{
@@ -1427,21 +1267,7 @@ export type GetPhotoQueryVariables = Exact<{
 }>;
 
 
-export type GetPhotoQuery = (
-  { __typename?: 'query_root' }
-  & { photos_by_pk?: Maybe<(
-    { __typename?: 'photos' }
-    & Pick<Photos, 'id' | 'description' | 'created_at' | 'photo_url'>
-    & { comments: Array<(
-      { __typename?: 'comments' }
-      & Pick<Comments, 'id' | 'comment' | 'created_at'>
-      & { firebase_user_profile?: Maybe<(
-        { __typename?: 'UserProfile' }
-        & Pick<UserProfile, 'displayName'>
-      )> }
-    )> }
-  )> }
-);
+export type GetPhotoQuery = { __typename?: 'query_root', photos_by_pk?: { __typename?: 'photos', id: any, description: string, created_at: any, photo_url: string, comments: Array<{ __typename?: 'comments', id: any, comment: string, created_at: any, firebase_user_profile?: { __typename?: 'UserProfile', displayName?: string | null } | null }> } | null };
 
 export type InsertCommentMutationVariables = Exact<{
   comment: Scalars['String'];
@@ -1449,40 +1275,14 @@ export type InsertCommentMutationVariables = Exact<{
 }>;
 
 
-export type InsertCommentMutation = (
-  { __typename?: 'mutation_root' }
-  & { insert_comments_one?: Maybe<(
-    { __typename?: 'comments' }
-    & Pick<Comments, 'id' | 'comment' | 'created_at'>
-    & { firebase_user_profile?: Maybe<(
-      { __typename?: 'UserProfile' }
-      & Pick<UserProfile, 'displayName'>
-    )> }
-  )> }
-);
+export type InsertCommentMutation = { __typename?: 'mutation_root', insert_comments_one?: { __typename?: 'comments', id: any, comment: string, created_at: any, firebase_user_profile?: { __typename?: 'UserProfile', displayName?: string | null } | null } | null };
 
 export type GetUserPhotosQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
 
 
-export type GetUserPhotosQuery = (
-  { __typename?: 'query_root' }
-  & { photos: Array<(
-    { __typename?: 'photos' }
-    & Pick<Photos, 'id' | 'photo_url' | 'created_at'>
-    & { firebase_user_profile?: Maybe<(
-      { __typename?: 'UserProfile' }
-      & Pick<UserProfile, 'displayName'>
-    )>, comments_aggregate: (
-      { __typename?: 'comments_aggregate' }
-      & { aggregate?: Maybe<(
-        { __typename?: 'comments_aggregate_fields' }
-        & Pick<Comments_Aggregate_Fields, 'count'>
-      )> }
-    ) }
-  )> }
-);
+export type GetUserPhotosQuery = { __typename?: 'query_root', photos: Array<{ __typename?: 'photos', id: any, photo_url: string, created_at: any, firebase_user_profile?: { __typename?: 'UserProfile', displayName?: string | null } | null, comments_aggregate: { __typename?: 'comments_aggregate', aggregate?: { __typename?: 'comments_aggregate_fields', count: number } | null } }> };
 
 export type SignInMutationVariables = Exact<{
   email: Scalars['String'];
@@ -1490,13 +1290,7 @@ export type SignInMutationVariables = Exact<{
 }>;
 
 
-export type SignInMutation = (
-  { __typename?: 'mutation_root' }
-  & { login?: Maybe<(
-    { __typename?: 'LoginObject' }
-    & Pick<LoginObject, 'id' | 'accessToken'>
-  )> }
-);
+export type SignInMutation = { __typename?: 'mutation_root', login?: { __typename?: 'LoginObject', id: string, accessToken: string } | null };
 
 export type SignUpMutationVariables = Exact<{
   email: Scalars['String'];
@@ -1505,26 +1299,14 @@ export type SignUpMutationVariables = Exact<{
 }>;
 
 
-export type SignUpMutation = (
-  { __typename?: 'mutation_root' }
-  & { create_user?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'displayName' | 'email' | 'id'>
-  )> }
-);
+export type SignUpMutation = { __typename?: 'mutation_root', create_user?: { __typename?: 'User', displayName?: string | null, email: string, id: string } | null };
 
 export type UploadPhotoMutationVariables = Exact<{
   base64image: Scalars['String'];
 }>;
 
 
-export type UploadPhotoMutation = (
-  { __typename?: 'mutation_root' }
-  & { upload_photo?: Maybe<(
-    { __typename?: 'UploadResult' }
-    & Pick<UploadResult, 'url'>
-  )> }
-);
+export type UploadPhotoMutation = { __typename?: 'mutation_root', upload_photo?: { __typename?: 'UploadResult', url: string } | null };
 
 export type InsertPhotoMutationVariables = Exact<{
   photoUrl: Scalars['String'];
@@ -1532,30 +1314,14 @@ export type InsertPhotoMutationVariables = Exact<{
 }>;
 
 
-export type InsertPhotoMutation = (
-  { __typename?: 'mutation_root' }
-  & { insert_photos?: Maybe<(
-    { __typename?: 'photos_mutation_response' }
-    & Pick<Photos_Mutation_Response, 'affected_rows'>
-    & { returning: Array<(
-      { __typename?: 'photos' }
-      & Pick<Photos, 'description' | 'photo_url' | 'created_at'>
-    )> }
-  )> }
-);
+export type InsertPhotoMutation = { __typename?: 'mutation_root', insert_photos?: { __typename?: 'photos_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'photos', description: string, photo_url: string, created_at: any }> } | null };
 
 export type GetProfileQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type GetProfileQuery = (
-  { __typename?: 'query_root' }
-  & { user_profile?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'displayName'>
-  )> }
-);
+export type GetProfileQuery = { __typename?: 'query_root', user_profile?: { __typename?: 'User', id: string, email: string, displayName?: string | null } | null };
 
 
 export const GetPhotoDocument = gql`
@@ -1594,10 +1360,12 @@ export const GetPhotoDocument = gql`
  * });
  */
 export function useGetPhotoQuery(baseOptions: Apollo.QueryHookOptions<GetPhotoQuery, GetPhotoQueryVariables>) {
-        return Apollo.useQuery<GetPhotoQuery, GetPhotoQueryVariables>(GetPhotoDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPhotoQuery, GetPhotoQueryVariables>(GetPhotoDocument, options);
       }
 export function useGetPhotoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPhotoQuery, GetPhotoQueryVariables>) {
-          return Apollo.useLazyQuery<GetPhotoQuery, GetPhotoQueryVariables>(GetPhotoDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPhotoQuery, GetPhotoQueryVariables>(GetPhotoDocument, options);
         }
 export type GetPhotoQueryHookResult = ReturnType<typeof useGetPhotoQuery>;
 export type GetPhotoLazyQueryHookResult = ReturnType<typeof useGetPhotoLazyQuery>;
@@ -1635,7 +1403,8 @@ export type InsertCommentMutationFn = Apollo.MutationFunction<InsertCommentMutat
  * });
  */
 export function useInsertCommentMutation(baseOptions?: Apollo.MutationHookOptions<InsertCommentMutation, InsertCommentMutationVariables>) {
-        return Apollo.useMutation<InsertCommentMutation, InsertCommentMutationVariables>(InsertCommentDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertCommentMutation, InsertCommentMutationVariables>(InsertCommentDocument, options);
       }
 export type InsertCommentMutationHookResult = ReturnType<typeof useInsertCommentMutation>;
 export type InsertCommentMutationResult = Apollo.MutationResult<InsertCommentMutation>;
@@ -1675,10 +1444,12 @@ export const GetUserPhotosDocument = gql`
  * });
  */
 export function useGetUserPhotosQuery(baseOptions: Apollo.QueryHookOptions<GetUserPhotosQuery, GetUserPhotosQueryVariables>) {
-        return Apollo.useQuery<GetUserPhotosQuery, GetUserPhotosQueryVariables>(GetUserPhotosDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserPhotosQuery, GetUserPhotosQueryVariables>(GetUserPhotosDocument, options);
       }
 export function useGetUserPhotosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserPhotosQuery, GetUserPhotosQueryVariables>) {
-          return Apollo.useLazyQuery<GetUserPhotosQuery, GetUserPhotosQueryVariables>(GetUserPhotosDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserPhotosQuery, GetUserPhotosQueryVariables>(GetUserPhotosDocument, options);
         }
 export type GetUserPhotosQueryHookResult = ReturnType<typeof useGetUserPhotosQuery>;
 export type GetUserPhotosLazyQueryHookResult = ReturnType<typeof useGetUserPhotosLazyQuery>;
@@ -1712,7 +1483,8 @@ export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMut
  * });
  */
 export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignInMutation, SignInMutationVariables>) {
-        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, options);
       }
 export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
 export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
@@ -1750,7 +1522,8 @@ export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMut
  * });
  */
 export function useSignUpMutation(baseOptions?: Apollo.MutationHookOptions<SignUpMutation, SignUpMutationVariables>) {
-        return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument, options);
       }
 export type SignUpMutationHookResult = ReturnType<typeof useSignUpMutation>;
 export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>;
@@ -1782,7 +1555,8 @@ export type UploadPhotoMutationFn = Apollo.MutationFunction<UploadPhotoMutation,
  * });
  */
 export function useUploadPhotoMutation(baseOptions?: Apollo.MutationHookOptions<UploadPhotoMutation, UploadPhotoMutationVariables>) {
-        return Apollo.useMutation<UploadPhotoMutation, UploadPhotoMutationVariables>(UploadPhotoDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UploadPhotoMutation, UploadPhotoMutationVariables>(UploadPhotoDocument, options);
       }
 export type UploadPhotoMutationHookResult = ReturnType<typeof useUploadPhotoMutation>;
 export type UploadPhotoMutationResult = Apollo.MutationResult<UploadPhotoMutation>;
@@ -1820,7 +1594,8 @@ export type InsertPhotoMutationFn = Apollo.MutationFunction<InsertPhotoMutation,
  * });
  */
 export function useInsertPhotoMutation(baseOptions?: Apollo.MutationHookOptions<InsertPhotoMutation, InsertPhotoMutationVariables>) {
-        return Apollo.useMutation<InsertPhotoMutation, InsertPhotoMutationVariables>(InsertPhotoDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertPhotoMutation, InsertPhotoMutationVariables>(InsertPhotoDocument, options);
       }
 export type InsertPhotoMutationHookResult = ReturnType<typeof useInsertPhotoMutation>;
 export type InsertPhotoMutationResult = Apollo.MutationResult<InsertPhotoMutation>;
@@ -1852,10 +1627,12 @@ export const GetProfileDocument = gql`
  * });
  */
 export function useGetProfileQuery(baseOptions: Apollo.QueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
-        return Apollo.useQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
       }
 export function useGetProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
-          return Apollo.useLazyQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
         }
 export type GetProfileQueryHookResult = ReturnType<typeof useGetProfileQuery>;
 export type GetProfileLazyQueryHookResult = ReturnType<typeof useGetProfileLazyQuery>;
